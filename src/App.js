@@ -21,10 +21,11 @@ function App() {
   })
 
   const randomizeJerry = () => {
+    let newX = Math.max(Math.floor(Math.random() * window.innerWidth) - 200, 200)
     setJerryPosition({
-      x: Math.max(Math.floor(Math.random() * window.innerWidth) - 200, 200),
+      x: newX,
       y: Math.max(Math.floor(Math.random() * window.innerHeight) - 200, 200),
-      direction: 'right'
+      direction: newX + 2 > jerryPosition.x ? 1 : -1
     })
   }
 
@@ -47,7 +48,7 @@ function App() {
   return (
     <div className="App">
       <Tom setTomPosition={setTomPosition} tomPosition={ tomPosition}/>
-      <Jerry x={jerryPosition.x} y={jerryPosition.y} isCaught={ isCaught}/>
+      <Jerry direction={ jerryPosition.direction} x={jerryPosition.x} y={jerryPosition.y} isCaught={ isCaught}/>
     </div>
   );
 }

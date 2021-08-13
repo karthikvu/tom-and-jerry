@@ -3,16 +3,28 @@ import jerryImage from './jerry.png'
 import { motion } from "framer-motion"
 
 const Jerry = props => {
-
-    return <motion.img src={jerryImage} layout="jerry" style={{
+    const variants = {
+        left: { scaleX: -1 },
+        right: { scaleX: 1 },
+    }
+    return <motion.div style={{
             width: '100px',
             height: '100px',
             position: 'absolute',
             top: props.y + 'px',
             left: props.x + 'px',
-            // filter: 'invert(1) !important',
-            // border:` ${props.isCaught ? 3 : 1}px solid ${props.isCaught ? "red" : "gray"}`
-        }}></motion.img>
+    }}
+    layout="jerry"
+    >
+        <img
+            src={jerryImage}
+            style={{
+                width: '100px',
+                height: '100px',
+                transform: `scaleX(${props.direction})`
+            }}
+            ></img>
+        </motion.div>
 }
 
 export default Jerry;
